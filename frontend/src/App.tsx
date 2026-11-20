@@ -7,7 +7,7 @@ import EditRestaurant from './component/EditRestaurant.tsx'
 export default function App() {
     return (
         <main>
-            <h1>Restaurant Finder</h1>
+            <h1>Restaurant Finder Test</h1>
 
             <Routes>
                 <Route path="/" element={<WelcomePage/>}/>
