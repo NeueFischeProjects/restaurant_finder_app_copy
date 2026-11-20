@@ -130,3 +130,20 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/restaurant-finder:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/restaurant-finder:${{ github.sha }}
+
+  # -------------------------------------------------------------------
+  # JOB 4: Render sagen, dass ein neues Image bereitliegt
+  # Render holt daraufhin restaurant-finder:latest von Docker Hub
+  # und startet die App mit der neuen Version neu.
+  # -------------------------------------------------------------------
+  deploy-to-render:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    # Erst starten, wenn das neue Image auf Docker Hub liegt
+    needs: push-to-docker-hub
+
+    steps:
+      # Deploy Hook von Render aufrufen (geheime URL aus den GitHub-Secrets).
+      # --fail: Job schlägt fehl, wenn Render einen Fehler zurückgibt
+      - name: Trigger Render deploy
+        run: curl --fail -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
