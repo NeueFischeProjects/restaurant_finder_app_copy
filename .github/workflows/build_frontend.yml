@@ -1,4 +1,4 @@
-name: SonarQube
+name: Sonar Frontend
 on:
   push:
     branches:
@@ -28,7 +28,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=heinzdanner
-            -Dsonar.projectKey=heinzdanner_restaurant_finder_app_frontend
-            -Dsonar.sources=./frontend/src
+            -Dsonar.organization=zakariahammouti
+            -Dsonar.projectKey=zakariahammouti_restaurant_finder_app_copy_frontend
+            -Dsonar.exclusions=backend/**
             -Dsonar.coverage.exclusions=**/*
